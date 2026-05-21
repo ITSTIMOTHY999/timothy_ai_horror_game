@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 674925898}
   - component: {fileID: 674925897}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: InputManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,6 +439,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba93d21b6f747a44294b70fcf238a342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnMoveInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1939142090}
+        m_TargetAssemblyTypeName: PlayerCharacterMovement, Assembly-CSharp
+        m_MethodName: SetMoveDirection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &674925898
 Transform:
   m_ObjectHideFlags: 0
@@ -819,6 +834,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1939142088}
   - component: {fileID: 1939142089}
+  - component: {fileID: 1939142090}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -867,6 +883,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1939142090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939142087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19dcf305e8de6ec40a85e85a56252319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterController: {fileID: 1939142089}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
