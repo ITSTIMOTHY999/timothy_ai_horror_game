@@ -2,45 +2,33 @@ using UnityEngine;
 
 public class PlayerCharacterMovement : MonoBehaviour
 {
-    // Stores movement direction
     private Vector3 _movementDirection;
 
-    // Current movement speed
     private float _currentSpeed = 0f;
 
-    // Walk speed
     [SerializeField]
     private float _walkSpeed = 1f;
 
-    // Sprint speed
     [SerializeField]
     private float _sprintSpeed = 2f;
 
-    // Acceleration amount
     [SerializeField]
     private float _acceleration = 1f;
 
-    // Sprint status
     private bool _isSprint;
 
-    // Stores movement velocity on XZ
     private Vector3 _velocityXZ;
 
-    // Gravity strength
     [SerializeField]
     private float _gravityScale = 1f;
 
-    // Vertical velocity
     private float _velocityY;
 
-    // Grounded state
     private bool _isGrounded;
 
-    // Reference to CharacterController
     [SerializeField]
     private CharacterController _characterController;
 
-    // Receives movement input from InputManager
     public void SetMoveDirection(Vector2 inputDirection)
     {
         _movementDirection = new Vector3(
@@ -50,24 +38,20 @@ public class PlayerCharacterMovement : MonoBehaviour
         );
     }
 
-    // Receives sprint input from InputManager
     public void SetSprint(bool isSprint)
     {
         _isSprint = isSprint;
         Debug.Log("Sprint: " + isSprint);
     }
 
-    // Calculate acceleration/deceleration
 private void CalculateAcceleration()
 {
-    // If not moving
     if (_movementDirection.magnitude <= 0.01f)
     {
         _currentSpeed = 0;
         return;
     }
 
-    // Determine target speed
     float targetSpeed;
 
     if (_isSprint)
@@ -79,7 +63,7 @@ private void CalculateAcceleration()
         targetSpeed = _walkSpeed;
     }
 
-    // Smoothly move toward target speed
+    //acceleration
     _currentSpeed = Mathf.MoveTowards(
         _currentSpeed,
         targetSpeed,
@@ -87,27 +71,20 @@ private void CalculateAcceleration()
     );
 }
 
-    // Calculates movement velocity based on camera direction
     private void CalculateVelocityXZ()
     {
-        // Get camera transform
         Transform cameraTransform = Camera.main.transform;
 
-        // Horizontal movement relative to camera
         Vector3 xDirection =
             _movementDirection.x * cameraTransform.right;
 
-        // Forward/backward movement relative to camera
         Vector3 zDirection =
             _movementDirection.z * cameraTransform.forward;
 
-        // Combine movement directions
         Vector3 direction = xDirection + zDirection;
 
-        // Prevent vertical movement
         direction.y = 0;
 
-        // Check if player is moving
         if (_movementDirection.magnitude > 0.01f)
         {
             // Calculate final movement velocity
@@ -121,7 +98,7 @@ private void CalculateAcceleration()
         }
     }
 
-    // Calculate gravity velocity
+    //gravity
     private void CalculateVelocityY()
     {
         _velocityY =
@@ -131,7 +108,7 @@ private void CalculateAcceleration()
             Time.deltaTime;
     }
 
-    // Check if player is grounded
+    //grounded
     private void CheckIsGrounded()
     {
         LayerMask groundLayer = LayerMask.GetMask("Ground");
@@ -143,7 +120,6 @@ private void CalculateAcceleration()
         );
     }
 
-    // Reset gravity when grounded
     private void ResetVelocityY()
     {
         if (_isGrounded == true && _velocityY < 0)
@@ -152,7 +128,7 @@ private void CalculateAcceleration()
         }
     }
 
-    // Move player
+    //move
     public void Move()
     {
         // Calculate horizontal movement
@@ -171,6 +147,8 @@ private void CalculateAcceleration()
         // Move character
         _characterController.Move(velocity * Time.deltaTime);
     }
+    //sprint
+    public bool IsSprint => _isSprint;
 
     private void Update()
     {
