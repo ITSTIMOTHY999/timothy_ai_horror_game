@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface Ipickable
+public interface IPickable
 {
     public void Pickup();
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    public string Name {get;}
+    public string Name => "Door";
     public void Interact();
 
 }
