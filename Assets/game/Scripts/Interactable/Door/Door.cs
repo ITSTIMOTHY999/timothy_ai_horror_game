@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
  
 public class Door : MonoBehaviour, IInteractable
 {
@@ -17,9 +18,11 @@ public class Door : MonoBehaviour, IInteractable
     protected string _keyID;
     protected bool _isAnimating;
     protected bool _isOpen;
+    protected Coroutine _animatingDoorCoroutine;
     public bool IsAnimating => _isAnimating;
     public string Name => _name;
 
+    [ContextMenu("Interact Door")]
     public void Interact()
     {
         // Mengecek apakah pintu sedang terbuka
@@ -35,13 +38,13 @@ public class Door : MonoBehaviour, IInteractable
         }
     }
 
-    public void Open()
+    public virtual void Open()
     {
         _isOpen = true;
         OnDoorOpen?.Invoke();
     }
 
-    public void Close()
+    public virtual void Close()
     {
         _isOpen = false;
         OnDoorClose?.Invoke();
