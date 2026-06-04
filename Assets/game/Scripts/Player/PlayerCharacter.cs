@@ -8,10 +8,13 @@ public class PlayerCharacter : MonoBehaviour
     private PlayerCharacterStamina _stamina;
     [SerializeField]
     private InventoryManager _inventory;
+    [SerializeField]
+    private InteractDetector _interactDetector;
  
     public PlayerCharacterMovement Movement => _movement;
     public PlayerCharacterStamina Stamina => _stamina;
     public InventoryManager Inventory => _inventory;
+    public InteractDetector InteractDetector => _interactDetector;
     
         private void Awake()
     {

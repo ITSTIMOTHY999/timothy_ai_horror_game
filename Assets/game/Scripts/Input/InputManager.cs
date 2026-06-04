@@ -14,6 +14,8 @@ public class InputManager : MonoBehaviour, IPlayerActions
     // Input system reference
     private GameInput _inputAction;
 
+    public UnityEvent OnInteractInput;
+
     private void Awake()
     {
         _inputAction = new GameInput();
@@ -63,7 +65,7 @@ public class InputManager : MonoBehaviour, IPlayerActions
     {
         if (context.performed)
         {
-            Debug.Log("Interact");
+            OnInteractInput?.Invoke();
         }
     }
 }
