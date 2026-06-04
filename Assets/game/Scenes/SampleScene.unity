@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: FlashLight_oo1
   _name: Flash Light
+  _data: {fileID: 0}
   OnItemPicked:
     m_PersistentCalls:
       m_Calls: []
@@ -775,6 +776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: Key_001
   _name: Door Key
+  _data: {fileID: 0}
   OnItemPicked:
     m_PersistentCalls:
       m_Calls: []
@@ -1469,8 +1471,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1939142088}
   - component: {fileID: 1939142089}
+  - component: {fileID: 1939142093}
   - component: {fileID: 1939142090}
   - component: {fileID: 1939142091}
+  - component: {fileID: 1939142092}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1552,6 +1556,33 @@ MonoBehaviour:
   _maxStamina: 100
   _sprintStaminaCost: 20
   _staminaRegenValue: 20
+--- !u!114 &1939142092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939142087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3c3e0061e534a46884d594564c9867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1939142093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939142087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f90144a2f7dff4195cd64e2e13d385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movement: {fileID: 1939142090}
+  _stamina: {fileID: 1939142091}
+  _inventory: {fileID: 1939142092}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ public class Item : MonoBehaviour, IInteractable, IPickable
 {
     [SerializeField] private string _id;
     [SerializeField] private string _name;
+    [SerializeField] private ItemData _data;
 
     public string Id => _id;
     public string Name => _name;
@@ -17,8 +18,10 @@ public class Item : MonoBehaviour, IInteractable, IPickable
         Pickup();
     }
 
-    public void Pickup()
+    public void Pickup(PlayerCharacter character)
     {
+        ItemData newData = new ItemData(_data.ID, _data.Name);
+        character.Inventory.AddItems(newData);
         OnItemPicked?.Invoke();
         Destroy(gameObject);
     }

@@ -23,7 +23,7 @@ public class Door : MonoBehaviour, IInteractable
     public string Name => _name;
 
     [ContextMenu("Interact Door")]
-    public void Interact()
+    public void Interact(PlayerCharacter character)
     {
         // Mengecek apakah pintu sedang terbuka
         if (_isOpen == true)
