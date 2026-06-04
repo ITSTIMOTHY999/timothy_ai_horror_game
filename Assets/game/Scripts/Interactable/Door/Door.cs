@@ -25,16 +25,35 @@ public class Door : MonoBehaviour, IInteractable
     [ContextMenu("Interact Door")]
     public void Interact(PlayerCharacter character)
     {
-        // Mengecek apakah pintu sedang terbuka
-        if (_isOpen == true)
+        // Mengecek apakah pintu dikunci
+        if (_isLocked == true)
         {
-            // Jika pintu terbuka maka tutup pintu
-            Close();
+            // Jika pintu dikunci
+            // Mengecek apakah player memiliki kuncinya di inventory 
+            // dengan menggunakan ID nya
+            bool hasKey = character.Inventory.CheckItem(_keyID);
+            if (hasKey == true)
+            {
+                // Jika punya maka mengubah status pintu menajdi tidak terkunci
+                _isLocked = false;
+                // Kemudian buka pintu
+                Open();
+            }
         }
         else
         {
-            // Jika pintu tertutup maka buka pintu
-            Open();
+            // Jika tidak terkunci atau kunci telah dibuka
+            // Mengecek apakah pintu sedang terbuka
+            if (_isOpen == true)
+            {
+                // Jika pintu terbuka maka tutup pintu
+                Close();
+            }
+            else
+            {
+                // Jika pintu tertutup maka buka pintu
+                Open();
+            }
         }
     }
 

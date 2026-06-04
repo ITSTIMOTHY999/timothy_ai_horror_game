@@ -193,9 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9afe824fb178948b27b928bfc20f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: FlashLight_oo1
-  _name: Flash Light
-  _data: {fileID: 0}
+  _data:
+    _id: FlashLight_001
+    _name: FlashLight
   OnItemPicked:
     m_PersistentCalls:
       m_Calls: []
@@ -774,9 +774,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9afe824fb178948b27b928bfc20f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: Key_001
-  _name: Door Key
-  _data: {fileID: 0}
+  _data:
+    _id: Key_001
+    _name: Key
   OnItemPicked:
     m_PersistentCalls:
       m_Calls: []
@@ -1395,7 +1395,7 @@ MonoBehaviour:
   _doorTransform: {fileID: 1649271684}
   _duration: 1
   _isLocked: 1
-  _keyID: 
+  _keyID: Key_001
   _openAngle: 125
   _closedAngle: 0
 --- !u!1001 &1729108972
