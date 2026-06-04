@@ -3,19 +3,16 @@ using UnityEngine.Events;
 
 public class Item : MonoBehaviour, IInteractable, IPickable
 {
-    [SerializeField] private string _id;
-    [SerializeField] private string _name;
     [SerializeField] private ItemData _data;
 
-    public string Id => _id;
-    public string Name => _name;
+    public string Name => _data.Name;
 
     public UnityEvent OnItemPicked;
 
     [ContextMenu("Interact Item")]
-    public void Interact()
+    public void Interact(PlayerCharacter character)
     {
-        Pickup();
+        Pickup(character);
     }
 
     public void Pickup(PlayerCharacter character)
