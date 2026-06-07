@@ -10,6 +10,13 @@ public class InteractDetector : MonoBehaviour
     private IInteractable _detectedInteractable;
     private bool _isInteracting;
 
+    public bool Enabled { get; private set; } = true;
+
+    public void SetEnabled(bool isEnabled)
+    {
+        Enabled = isEnabled;
+    }
+
     private void Update()
     {
         UpdateDetection();
@@ -22,6 +29,8 @@ public class InteractDetector : MonoBehaviour
             _isInteracting = false;
             return;
         }
+
+        if (!Enabled) return;
 
         Transform cameraTransform = Camera.main.transform;
         bool isDetectingInteractable = Physics.BoxCast(
@@ -46,7 +55,7 @@ public class InteractDetector : MonoBehaviour
 
     public void Interact()
     {
-        if (_detectedInteractable != null)
+        if (_detectedInteractable != null && Enabled)
         {
             _detectedInteractable.Interact(_owner);
             _detectedInteractable = null;
@@ -56,8 +65,11 @@ public class InteractDetector : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (!Enabled) return;
+
         Gizmos.color = Color.red;
         Transform cameraTransform = Camera.main.transform;
+
         bool isDetectingInteractable = Physics.BoxCast(
             cameraTransform.position,
             _detectorBoxSize * 0.5f,
@@ -71,13 +83,17 @@ public class InteractDetector : MonoBehaviour
         if (isDetectingInteractable)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(cameraTransform.position, cameraTransform.position + cameraTransform.forward * hit.distance);
-            Gizmos.DrawWireCube(cameraTransform.position + cameraTransform.forward * hit.distance, _detectorBoxSize);
+            Gizmos.DrawLine(cameraTransform.position,
+                            cameraTransform.position + cameraTransform.forward * hit.distance);
+            Gizmos.DrawWireCube(cameraTransform.position + cameraTransform.forward * hit.distance,
+                                _detectorBoxSize);
         }
         else
         {
-            Gizmos.DrawLine(cameraTransform.position, cameraTransform.position + cameraTransform.forward * _detectorDistance);
-            Gizmos.DrawWireCube(cameraTransform.position + cameraTransform.forward * _detectorDistance, _detectorBoxSize);
+            Gizmos.DrawLine(cameraTransform.position,
+                            cameraTransform.position + cameraTransform.forward * _detectorDistance);
+            Gizmos.DrawWireCube(cameraTransform.position + cameraTransform.forward * _detectorDistance,
+                                _detectorBoxSize);
         }
     }
 }

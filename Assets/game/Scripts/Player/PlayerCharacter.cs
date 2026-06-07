@@ -10,18 +10,26 @@ public class PlayerCharacter : MonoBehaviour
     private InventoryManager _inventory;
     [SerializeField]
     private InteractDetector _interactDetector;
+    [SerializeField]
+    private CameraManager _camera;
+    [SerializeField]
+    private InputManager _input;
  
     public PlayerCharacterMovement Movement => _movement;
     public PlayerCharacterStamina Stamina => _stamina;
     public InventoryManager Inventory => _inventory;
     public InteractDetector InteractDetector => _interactDetector;
-    
-        private void Awake()
+    public CameraManager Camera => _camera;
+    public InputManager Input => _input;
+    public bool IsHiding { get; private set; }
+
+    private void Awake()
     {
-        // Ketika game dijalankan,
-        // cursor mouse akan disembunyikan
         Cursor.visible = false;
-        // cursor mouse akan dikunci di tengah layar
         Cursor.lockState = CursorLockMode.Locked;
+    }
+    public void SetIsHiding(bool isHiding)
+    {
+        IsHiding = isHiding;
     }
 }

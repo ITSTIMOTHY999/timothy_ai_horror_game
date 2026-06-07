@@ -26,6 +26,8 @@ public class PlayerCharacterMovement : MonoBehaviour
 
     private bool _isGrounded;
 
+    public bool Enabled { get; private set; } = true;
+
     [SerializeField]
     private CharacterController _characterController;
 
@@ -131,21 +133,26 @@ private void CalculateAcceleration()
     //move
     public void Move()
     {
-        // Calculate horizontal movement
-        CalculateVelocityXZ();
+        
+        if (Enabled == true)
+        {
+            // Calculate horizontal movement
+            CalculateVelocityXZ();
 
-        // Calculate gravity
-        CalculateVelocityY();
+            // Calculate gravity
+            CalculateVelocityY();
 
-        // Combine velocity
-        Vector3 velocity = new Vector3(
-            _velocityXZ.x,
-            _velocityY,
-            _velocityXZ.z
-        );
+            // Combine velocity
+            Vector3 velocity = new Vector3(
+                _velocityXZ.x,
+                _velocityY,
+                _velocityXZ.z
+            );
 
-        // Move character
-        _characterController.Move(velocity * Time.deltaTime);
+            // Move character
+            _characterController.Move(velocity * Time.deltaTime);
+        }
+        
     }
     //sprint
     public bool IsSprint => _isSprint;
@@ -164,5 +171,9 @@ private void CalculateAcceleration()
             "_isSprint = " + _isSprint +
             " | currentSpeed = " + _currentSpeed
         );
+    }
+    public void SetEnabled(bool isEnabled)
+    {
+        Enabled = isEnabled;
     }
 }
