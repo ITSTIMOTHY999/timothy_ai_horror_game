@@ -15,7 +15,7 @@ public class Item : MonoBehaviour, IInteractable, IPickable
         Pickup(character);
     }
 
-    public void Pickup(PlayerCharacter character)
+    public virtual void Pickup(PlayerCharacter character)
     {
         ItemData newData = new ItemData(_data.ID, _data.Name);
         character.Inventory.AddItems(newData);

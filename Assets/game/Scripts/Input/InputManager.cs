@@ -5,16 +5,15 @@ using static GameInput;
 
 public class InputManager : MonoBehaviour, IPlayerActions
 {
-    // Movement event
     public UnityEvent<Vector2> OnMoveInput;
 
-    // Sprint event
     public UnityEvent<bool> OnSprintInput;
 
-    // Input system reference
     private GameInput _inputAction;
 
     public UnityEvent OnInteractInput;
+
+    public UnityEvent OnFlashlightInput;
 
     private void Awake()
     {
@@ -31,10 +30,6 @@ public class InputManager : MonoBehaviour, IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 moveDirection = context.ReadValue<Vector2>();
-
-        Debug.Log(moveDirection);
-
-        // Send movement input
         OnMoveInput?.Invoke(moveDirection);
     }
 
@@ -44,18 +39,12 @@ public class InputManager : MonoBehaviour, IPlayerActions
         // Button pressed
         if (context.performed)
         {
-            Debug.Log("Sprint Start");
-
-            // Send TRUE when sprinting
             OnSprintInput?.Invoke(true);
         }
 
         // Button released
         if (context.canceled)
         {
-            Debug.Log("Sprint Stop");
-
-            // Send FALSE when stop sprinting
             OnSprintInput?.Invoke(false);
         }
     }
@@ -66,6 +55,15 @@ public class InputManager : MonoBehaviour, IPlayerActions
         if (context.performed)
         {
             OnInteractInput?.Invoke();
+        }
+    }
+
+    //FLASHLIGHT
+    public void OnFlashlight(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnFlashlightInput?.Invoke();
         }
     }
 }

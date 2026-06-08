@@ -14,6 +14,8 @@ public class PlayerCharacter : MonoBehaviour
     private CameraManager _camera;
     [SerializeField]
     private InputManager _input;
+    [SerializeField]
+    private Flashlight _flashlight;
  
     public PlayerCharacterMovement Movement => _movement;
     public PlayerCharacterStamina Stamina => _stamina;
@@ -21,6 +23,7 @@ public class PlayerCharacter : MonoBehaviour
     public InteractDetector InteractDetector => _interactDetector;
     public CameraManager Camera => _camera;
     public InputManager Input => _input;
+    public Flashlight Flashlight => _flashlight;
     public bool IsHiding { get; private set; }
 
     private void Awake()
